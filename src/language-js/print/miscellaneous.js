@@ -201,8 +201,48 @@ function printTrailingComma(options, level = "es5") {
   return shouldPrintTrailingComma(options, level) ? ifBreak(",") : "";
 }
 
-function printSemicolon(options) {
-  return options.semi ? ";" : "";
+function printSemicolon(options, path) {
+  return options.semi ||
+    (path &&
+      (path.node.type === "TSDeclareFunction" ||
+        path.node.type === "TSModuleDeclaration") &&
+      isFollowedByBlockStatement(path))
+    ? ";"
+    : "";
+}
+
+function isFollowedByBlockStatement(path) {
+  const { siblings, index, parent, key } = path;
+  if (siblings) {
+    for (let i = index + 1; i < siblings.length; i++) {
+      const next = siblings[i];
+      if (next.type !== "EmptyStatement") {
+        return next.type === "BlockStatement";
+      }
+    }
+    return false;
+  }
+
+  // A declaration can be the last token of a larger statement, for example
+  // `for (;;) function f();` followed by a block.
+  switch (parent?.type) {
+    case "ExportNamedDeclaration":
+    case "ExportDefaultDeclaration":
+    case "ForStatement":
+    case "ForInStatement":
+    case "ForOfStatement":
+    case "WhileStatement":
+    case "WithStatement":
+    case "LabeledStatement":
+      return path.callParent(isFollowedByBlockStatement);
+    case "IfStatement":
+      return (
+        (!parent.alternate || key === "alternate") &&
+        path.callParent(isFollowedByBlockStatement)
+      );
+    default:
+      return false;
+  }
 }
 
 export {

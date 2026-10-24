@@ -1,0 +1,379 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`declarations.ts - {"semi":false} format 1`] = `
+====================================options=====================================
+parsers: ["typescript"]
+semi: false
+                                                      printWidth: 80 (default) |
+=====================================input======================================
+declare module "ambient";
+
+{
+  useAmbient();
+}
+
+declare function ambientFunction();
+
+{
+  useAmbientFunction();
+}
+
+function overload();
+{}
+
+export declare function exported();
+{}
+
+export default function defaultExport();
+{}
+
+declare function withComment(); // Keep the declaration separate.
+/* Block comment */
+{}
+
+declare function withEmptyStatements();
+;;
+{}
+
+declare function beforeIgnoredBlock();
+// prettier-ignore
+{   leaveThisBlockAlone(); }
+
+declare function ordinary();
+useOrdinary();
+
+declare module "ordinary";
+useModule();
+
+declare module "with-body" {};
+{}
+
+declare function beforeArray();
+[useArray()];
+
+=====================================output=====================================
+declare module "ambient";
+
+{
+  useAmbient()
+}
+
+declare function ambientFunction();
+
+{
+  useAmbientFunction()
+}
+
+function overload();
+{
+}
+
+export declare function exported();
+{
+}
+
+export default function defaultExport();
+{
+}
+
+declare function withComment(); // Keep the declaration separate.
+/* Block comment */
+{
+}
+
+declare function withEmptyStatements();
+{
+}
+
+declare function beforeIgnoredBlock();
+// prettier-ignore
+{   leaveThisBlockAlone(); }
+
+declare function ordinary()
+useOrdinary()
+
+declare module "ordinary"
+useModule()
+
+declare module "with-body" {}
+{
+}
+
+declare function beforeArray()
+;[useArray()]
+
+================================================================================
+`;
+
+exports[`declarations.ts - {"semi":true} format 1`] = `
+====================================options=====================================
+parsers: ["typescript"]
+semi: true
+                                                      printWidth: 80 (default) |
+=====================================input======================================
+declare module "ambient";
+
+{
+  useAmbient();
+}
+
+declare function ambientFunction();
+
+{
+  useAmbientFunction();
+}
+
+function overload();
+{}
+
+export declare function exported();
+{}
+
+export default function defaultExport();
+{}
+
+declare function withComment(); // Keep the declaration separate.
+/* Block comment */
+{}
+
+declare function withEmptyStatements();
+;;
+{}
+
+declare function beforeIgnoredBlock();
+// prettier-ignore
+{   leaveThisBlockAlone(); }
+
+declare function ordinary();
+useOrdinary();
+
+declare module "ordinary";
+useModule();
+
+declare module "with-body" {};
+{}
+
+declare function beforeArray();
+[useArray()];
+
+=====================================output=====================================
+declare module "ambient";
+
+{
+  useAmbient();
+}
+
+declare function ambientFunction();
+
+{
+  useAmbientFunction();
+}
+
+function overload();
+{
+}
+
+export declare function exported();
+{
+}
+
+export default function defaultExport();
+{
+}
+
+declare function withComment(); // Keep the declaration separate.
+/* Block comment */
+{
+}
+
+declare function withEmptyStatements();
+{
+}
+
+declare function beforeIgnoredBlock();
+// prettier-ignore
+{   leaveThisBlockAlone(); }
+
+declare function ordinary();
+useOrdinary();
+
+declare module "ordinary";
+useModule();
+
+declare module "with-body" {}
+{
+}
+
+declare function beforeArray();
+[useArray()];
+
+================================================================================
+`;
+
+exports[`wrapped.ts - {"semi":false} format 1`] = `
+====================================options=====================================
+parsers: ["typescript"]
+semi: false
+                                                      printWidth: 80 (default) |
+=====================================input======================================
+for (;;) function inFor();
+{}
+
+for (const key in object) function inForIn();
+{}
+
+for (const value of values) function inForOf();
+{}
+
+while (condition) function inWhile();
+{}
+
+label: function inLabel();
+{}
+
+if (condition) function inConsequent();
+{}
+
+if (condition) useConsequent(); else function inAlternate();
+{}
+
+if (condition) function beforeElse(); else useAlternate();
+{}
+
+for (;;) while (condition) function nested();
+;;
+{}
+
+do function inDoWhile(); while (condition);
+{}
+
+=====================================output=====================================
+for (;;) function inFor();
+{
+}
+
+for (const key in object) function inForIn();
+{
+}
+
+for (const value of values) function inForOf();
+{
+}
+
+while (condition) function inWhile();
+{
+}
+
+label: function inLabel();
+{
+}
+
+if (condition) function inConsequent();
+{
+}
+
+if (condition) useConsequent()
+else function inAlternate();
+{
+}
+
+if (condition) function beforeElse()
+else useAlternate()
+{
+}
+
+for (;;) while (condition) function nested();
+{
+}
+
+do function inDoWhile()
+while (condition)
+{
+}
+
+================================================================================
+`;
+
+exports[`wrapped.ts - {"semi":true} format 1`] = `
+====================================options=====================================
+parsers: ["typescript"]
+semi: true
+                                                      printWidth: 80 (default) |
+=====================================input======================================
+for (;;) function inFor();
+{}
+
+for (const key in object) function inForIn();
+{}
+
+for (const value of values) function inForOf();
+{}
+
+while (condition) function inWhile();
+{}
+
+label: function inLabel();
+{}
+
+if (condition) function inConsequent();
+{}
+
+if (condition) useConsequent(); else function inAlternate();
+{}
+
+if (condition) function beforeElse(); else useAlternate();
+{}
+
+for (;;) while (condition) function nested();
+;;
+{}
+
+do function inDoWhile(); while (condition);
+{}
+
+=====================================output=====================================
+for (;;) function inFor();
+{
+}
+
+for (const key in object) function inForIn();
+{
+}
+
+for (const value of values) function inForOf();
+{
+}
+
+while (condition) function inWhile();
+{
+}
+
+label: function inLabel();
+{
+}
+
+if (condition) function inConsequent();
+{
+}
+
+if (condition) useConsequent();
+else function inAlternate();
+{
+}
+
+if (condition) function beforeElse();
+else useAlternate();
+{
+}
+
+for (;;) while (condition) function nested();
+{
+}
+
+do function inDoWhile();
+while (condition);
+{
+}
+
+================================================================================
+`;

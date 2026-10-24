@@ -86,7 +86,7 @@ function printFunction(path, options, print, args) {
     ]),
     node.body ? " " : "",
     print("body"),
-    node.declare || !node.body ? printSemicolon(options) : "",
+    node.declare || !node.body ? printSemicolon(options, path) : "",
   ];
 }
 

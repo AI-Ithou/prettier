@@ -28,7 +28,7 @@ function printModuleDeclaration(path, options, print) {
     printDeclareToken(path),
     kind ? `${kind} ` : "",
     print("id"),
-    node.body ? [" ", group(print("body"))] : printSemicolon(options),
+    node.body ? [" ", group(print("body"))] : printSemicolon(options, path),
   ];
 }
 
